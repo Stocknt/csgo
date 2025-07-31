@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="base-col">
+<head>
+    <meta charset="UTF-8" />
+    <title>csgo clicker</title>
+    <script type="module" src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="wrapper">
+        
+        <div id="header" class="base-col container">
+            <div id="header-items" class="container">
+                <div id="cash-wrapper">
+                    <div id="cash" class="label">Cash:</div>
+                </div>
+                <button id="inv-btn" class="base-col base-border" onclick="loadPage('inv')">Inventory</button>
+            </div>
+        </div>
+        <div id="page" class="container">
+            <div id="page-contents" class="container">
+                <div id="shop-wrapper" class="container base-border page">
+                    <div id="shop-container" class="container page-body">
+                    </div>
+                </div>
+                <div id="caseinfo-wrapper" class="container base-border page active">
+                    <div id="caseinfo-container" class="container page-body">
+                        <span id="caseinfo-title" class="title"></span>
+                        <div id="caseinfo-btns" class="container">
+                            <div class="wrapper" style="width: 230px">
+                                <button id="back-btn" class="base-border base-col" onclick="loadPage(`shop`)">Back</button>
+                            </div>
+                            <div class="divider-v"></div>
+                            <div class="wrapper container" style="padding-left: 30px; width: 320px; align-items: center;">
+                                <button id="open1-btn" class="base-border base-col" onclick="console.log('hello')">Open 1</button>
+                                <span id="open1-price" class="label case-price box">$20000.00</span>
+                            </div>
+                            <div class="divider-v"></div>
+                            <div class="wrapper container" style="padding-left: 30px; width: 320px; align-items: center;">
+                                <button id="open5-btn" class="base-border base-col">Open 5</button>
+                                <span id="open5-price" class="case-price label box">$0.00</span>
+                            </div>
+                        </div>
+                        <div id="skin-list" class="container item-list"></div>
+                    </div>
+                </div>
+                <div id="case-wrapper" class="container page active">
+                    <button id="case-back-btn" class="top-left base-border base-col inactive" onclick="">Back</button>
+                    <div id="case-wheel-container" class="container">
+                        <div id="case-wheel" class="container"></div>
+                        <div id="wheel-arm"></div>
+                    </div>
+                </div>
+                <div id="inv-wrapper" class="container base-border page">
+                    <div id="inv-container" class="container page-body">
+                        <button id="back-btn" class="base-border base-col" onclick="loadPage(`shop`)">Back</button>
+                        <div id="inv-items" class="container item-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
