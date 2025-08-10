@@ -15,50 +15,282 @@
         
         <div id="header" class="base-col container">
             <div id="header-items" class="container">
-                <div id="cash-wrapper">
-                    <div id="cash" class="label">Cash:</div>
+                <div id="cash-wrapper" style="width: 160px">
+                    <div id="cash" class="label box">Cash:</div>
                 </div>
-                <button id="inv-btn" class="base-col base-border" onclick="loadPage('inv')">Inventory</button>
+                <div id="value-wrapper" style="width: 700px">
+                    <div id="value" class="label">Value:</div>
+                </div>
+                <div id="stocknt">
+                    <span>stocknt</span>
+                    <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/stocknt.png" class="icon">
+                </div>
+                <div class="btn-wrap" style="width: 160px;">
+                    <button id="earn-btn" class="base-col base-border desc-btn container" style="height: 47px; width: 100%;" onclick="loadPage('earn')">
+                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/cursor.png" class="icon">
+                        <span>Earn</span>
+                    </button>
+                </div>
+                <div class="dropdown-wrap" style="margin-right: 15px">
+                    <div id="select" class="dropdown base-border base-col">
+                        <div class="dropdown-header container">
+                            <span>Menu</span>
+                            <img id="menu-img" src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/downchevron.png" class="icon after-icon" style="margin: 0px 0px 0px 155px;">
+                        </div>
+                        <button id="shop-btn" class="base-col base-border desc-btn container nav-btn selected" onclick="loadPage('shop')">
+                            <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/shop.png" class="icon">
+                            <span>Shop</span>
+                        </button>
+                        <button id="betting-btn" class="base-col base-border desc-btn container nav-btn" onclick="loadPage('betting')">
+                            <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/betting.png" class="icon">
+                            <span>Betting</span>
+                        </button>
+                        <button id="upgrades-btn" class="base-col base-border desc-btn container nav-btn" onclick="loadPage('upgrades')">
+                            <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/upgrades.png" class="icon">
+                            <span>Upgrades</span>
+                        </button>
+                        <button id="inv-btn" class="base-col base-border desc-btn container nav-btn" onclick="loadPage('inv')">
+                            <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/backpack.png" class="icon">
+                            <span>Inventory</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="page" class="container">
             <div id="page-contents" class="container">
+                <div id="earn-wrapper" class="container base-border page">
+                    <div id=earn-container class="container">
+                        <span class="earn-symbol">$</span>
+                        <span style="text-align: center;">Click anywhere to Earn</span>
+                    </div>
+                </div>
                 <div id="shop-wrapper" class="container base-border page">
                     <div id="shop-container" class="container page-body">
                     </div>
                 </div>
                 <div id="caseinfo-wrapper" class="container base-border page active">
                     <div id="caseinfo-container" class="container page-body">
-                        <span id="caseinfo-title" class="title"></span>
-                        <div id="caseinfo-btns" class="container">
+                        <div id="caseinfo-header" class="container">
+                            <!-- <img src="https://raw.githubusercontent.com/stocknt/csgo/main/images/gamma.png" style="width: 24px; height: 24px; transform: scale(4)"alt="caseinfo"> -->
+                            <span id="caseinfo-title" class="title"></span>
+                        </div>
+                        <div id="caseinfo-btns" class="container header-btns">
                             <div class="wrapper" style="width: 230px">
                                 <button id="back-btn" class="base-border base-col" onclick="loadPage(`shop`)">Back</button>
                             </div>
                             <div class="divider-v"></div>
                             <div class="wrapper container" style="padding-left: 30px; width: 320px; align-items: center;">
-                                <button id="open1-btn" class="base-border base-col" onclick="console.log('hello')">Open 1</button>
+                                <button id="open1-btn" class="base-border base-col desc-btn container" onclick="">
+                                    <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/opencase.png" class="icon hug-left">
+                                    <span>Open 1</span>
+                                </button>
                                 <span id="open1-price" class="label case-price box">$20000.00</span>
                             </div>
                             <div class="divider-v"></div>
                             <div class="wrapper container" style="padding-left: 30px; width: 320px; align-items: center;">
-                                <button id="open5-btn" class="base-border base-col">Open 5</button>
-                                <span id="open5-price" class="case-price label box">$0.00</span>
+                                <button id="open3-btn" class="base-border base-col desc-btn container" onclick="">
+                                    <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/open3(2).png" class="icon hug-left">
+                                    <span>Open 3</span>
+                                </button>
+                                <span id="open3-price" class="case-price label box">$0.00</span>
                             </div>
                         </div>
                         <div id="skin-list" class="container item-list"></div>
                     </div>
                 </div>
                 <div id="case-wrapper" class="container page active">
-                    <button id="case-back-btn" class="top-left base-border base-col inactive" onclick="">Back</button>
-                    <div id="case-wheel-container" class="container">
-                        <div id="case-wheel" class="container"></div>
-                        <div id="wheel-arm"></div>
+                    <div id="case-btns" class="top-left container inactive">
+                        <div class="wrapper" style="width: 230px">
+                            <button id="case-back-btn" class="base-border base-col" onclick="">Back</button>
+                        </div>
+                        <div class="divider-v"></div>
+                        <button id="sellall-btn" class="base-border base-col container desc-btn" style="margin-left: 30px" onclick="">
+                            <span>Sell All</span>
+                            <span id="sellall-value" class="shop-price no-margin">$0.00</span>
+                        </button>
+                    </div>
+                    <div id="case-wrapper-lower" class="container">
+                        <div id="case-wheels" class="container"></div>
                     </div>
                 </div>
                 <div id="inv-wrapper" class="container base-border page">
                     <div id="inv-container" class="container page-body">
-                        <button id="back-btn" class="base-border base-col" onclick="loadPage(`shop`)">Back</button>
+                        <div id="inv-header" class="container header-btns">
+                            <div class="wrapper container" style="width: 230px";>
+                                <button id="back-btn" class="base-border base-col container desc-btn" onclick="loadPage(`shop`)">
+                                    <span>Shop</span>
+                                </button>
+                            </div>
+                            <div class="divider-v"></div>
+                            <div class="wrapper container" style="width: 400px; padding-left: 30px; gap: 20px;">
+                                <div class="container btn-wrap">
+                                    <button id="prev-btn" class="base-border base-col desc-btn container" style="width: 60px">
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/prev.png" class="icon">
+                                    </button>
+                                </div>
+                                <div id="page-num" class="box container page-num">1</div>
+                                <div class="container btn-wrap">
+                                    <button id="next-btn" class="base-border base-col desc-btn container" style="width: 60px">
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/next.png" class="icon">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         <div id="inv-items" class="container item-list"></div>
+                    </div>
+                </div>
+                <div id="upgrades-wrapper" class="container base-border page" style="width: 563px">
+                    <div id="upgrades-container" class="container page-body" style="flex-direction: column; gap: 20px">
+                        <div id="upgrades-header" class="container">
+                            
+                            <span id="upgrades-title" class="title">Upgrades</span>
+                        </div>
+                        <div id="upgrades-btns" class="container header-btns">
+                            <div class="wrapper" style="width: 230px">
+                                <button id="back-btn" class="base-border base-col" onclick="loadPage(`earn`)">Earn More</button>
+                            </div>
+                            
+                        </div>
+                        <div id="upgrades" class="container item-list">
+                            <div id="path0" class="upgrade-path container base-col"></div>
+                            <div id="path1" class="upgrade-path container base-col"></div>
+                            <div id="path2" class="upgrade-path container base-col"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="betting-wrapper" class="container base-border page">
+                    <div id="betting-container" class="container page-body" style="flex-direction: column; gap: 20px">
+                        <div id="betting-header" class="container">
+                            <div id="betting-btns" class="container header-btns">
+                                <div class="wrapper" style="width: 130px">
+                                    <button id="back-btn" class="exit-btn desc-btn container" onclick="loadPage(`shop`)">
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/exit.png" class="icon">
+                                        <span>Shop</span>
+                                    </button>
+                                </div>
+                                <div class="divider-v"></div>
+                                <div class="wrapper container" style="padding-left: 30px; flex-direction: row; align-items: center; gap: 10px">
+                                    <span style="margin-left: 0px; font-size: 20px; height: 26px">Balance:</span>
+                                    <div class="wrapper container desc-btn box" style="margin-right: 30px; padding: 0px 10px 0px 10px;">
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/chip.png" class="icon" style="width: 15px; height: 15px">
+                                        <span id="wallet1" class="case-price box" style="margin: 0px !important; padding: 0px !important">0.00</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="divider-v"></div> -->
+                                <div class="wrapper container" style="width: auto; margin-left: auto; align-items: center;">
+                                    <!-- <div id="deposit-field" class="container" style="margin-left: 30px">
+                                        <input id="deposit" type="number" placeholder="0.00" class="base-border base-col">
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/chip.png" class="icon after-icon">
+                                        <button id="deposit-btn" class="base-border base-col desc-btn container input-btn" style="width: 120px">
+                                            <span>Deposit</span>
+                                        </button>
+                                    </div> -->
+                                    <button id="deposit-btn" class="base-border base-col desc-btn container input-btn">
+                                            <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/deposit2.png" class="icon">
+                                            <span>Deposit</span>
+                                        </button>
+                                    <button id="withdraw-btn" class="base-border base-col container desc-btn" style="margin-left: 10px" onclick="">
+                                        <span>Withdraw</span>
+                                        <span id="withdraw1" class="shop-price no-margin">$0.00</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-window container">
+                            <div class="game-sidebar container">
+                                <div class="enter-bet container">
+                                    <span class="label" style="padding-left: 0px !important;">Amount</span>
+                                    <div id="bet-field-container" class="container" style="align-items: center; height: 50px">
+                                        <input id="bet-field" type="number" placeholder="0.00" class="base-border base-col">
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/chip.png" class="icon after-icon">
+                                        <button id="bet-1" class="bet-btn base-border">1</button>
+                                        <div class="bet-divider" style="margin-left: 239px; margin-top: -3px"></div>
+                                        <button id="bet-2" class="bet-btn base-border">2</button>
+                                        <div class="bet-divider divi2" style="margin-left: 279px; margin-top: -3px"></div>
+                                        <button id="bet-allin" class="bet-btn bet-btn-extended base-border">All in</button>
+                                    </div>
+                                </div>
+                                <div id="profit-area" class="profit hidden container" style="gap: 10px; flex-direction: column;">
+                                    <div id="profit-bar" class="profit-bar base-col">
+                                        <span id="profit-label" class="label" style="padding: 0px !important; width: 150px">Total Profit (1.00x):</span>
+                                        <div id="profit-field" class="profit-field">0.00</div>
+                                        <img class="icon" src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/chip.png" style="position: absolute; margin-left: 320px">
+                                    </div>
+                                </div>
+                                <div class="coinside-btns container">
+                                    <button id="heads-btn" class="coinside-btn game-btn noclick base-border desc-btn container hide">
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/heads.png" class="icon">
+                                        <span>Heads</span>
+                                    </button>
+                                    <button id="tails-btn" class="coinside-btn game-btn noclick base-border desc-btn container hide">
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/tails.png" class="icon">
+                                        <span>Tails</span>
+                                    </button>
+                                </div>
+                                <div style="width: calc(100% - 40px); height: 50px;">
+                                    <button id="event-btn" class="event-btn game-btn base-border" style="width: 100%">Play</button>
+                                </div>
+                                
+                                
+                            </div>
+                            <div class="game-page container" style="flex-direction: column; align-items: center;">
+                                <div class="coin-container container">
+                                    <div id="coin-img" class="coin">
+                                        <div class="heads-coin"></div>
+                                        <div class="tails-coin"></div>
+                                    </div>
+                                </div>
+                                <div class="history-bar container">
+                                    <div class="label history-label container" style="padding-left: 20px;">
+                                        <span style="height: 20px">History</span>
+                                    </div>
+                                    <div id="coin-history" class="history-container container base-col">
+                                    </div>
+                                </div>
+                                <div id="win-popup" class="win-popup">
+                                    <div id="win-mult" class="win-mult win">3.92x</div>
+                                    <div class="win-divider"></div>
+                                    <div id="win-amount-container" class="win-amount win">
+                                        <span id="win-amount" class="win">$29.20</span>
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/chip.png" class="icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="deposit-wrapper" class="container base-border page" style="height: 823px">
+                    <div id="deposit-container" class="container page-body" style="flex-direction: column; gap: 20px;">
+                        <div id="inv-header" class="container header-btns">
+                            <div class="wrapper container" style="width: 230px";>
+                                <button id="back-btn" class="base-border base-col container desc-btn" onclick="loadPage(`betting`)">
+                                    <span>Back</span>
+                                </button>
+                            </div>
+                            <div class="divider-v"></div>
+                            <div class="wrapper container" style="padding-left: 30px; flex-direction: row; align-items: center; gap: 10px">
+                                    <span style="margin-left: 0px; font-size: 20px; height: 26px">Balance:</span>
+                                    <div class="wrapper container desc-btn box" style="padding: 0px 10px 0px 10px;">
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/chip.png" class="icon" style="width: 15px; height: 15px">
+                                        <span id="wallet2" class="case-price box" style="margin: 0px !important; padding: 0px !important">0.00</span>
+                                    </div>
+                                </div>
+                            <div class="wrapper container" style="width: 400px; padding-left: 30px; gap: 20px;">
+                                <div class="container btn-wrap">
+                                    <button id="prev-btn-deposit" class="base-border base-col desc-btn container" style="width: 60px">
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/prev.png" class="icon">
+                                    </button>
+                                </div>
+                                <div id="page-num-deposit" class="box container page-num">1</div>
+                                <div class="container btn-wrap">
+                                    <button id="next-btn-deposit" class="base-border base-col desc-btn container" style="width: 60px">
+                                        <img src="https://raw.githubusercontent.com/stocknt/csgo/main/icons/next.png" class="icon">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="deposit-items" class="container item-list"></div>
                     </div>
                 </div>
             </div>
