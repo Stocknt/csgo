@@ -5,6 +5,7 @@
     color: rgb(185,185,185);
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
+    user-select: none;
 }
 
 html {
@@ -47,11 +48,15 @@ html {
 
 .skin-list-item {
     width: 176px;
-    height: 176px;
+    height: 186px;
     background-color: rgb(38, 37, 44);
     border-radius: 10px;
     flex-direction: column;
     margin-top: -3px;
+}
+
+.skin-list-item.inv-item {
+    height: 236px;
 }
 
 .shop-item:hover {
@@ -67,33 +72,55 @@ html {
 
 .shop-item-inner {
     width: 100%;
-    height: calc(100% - 30px);
+    height: 144px;
 }
 
 .shop-item-lower {
-    width: 100%;
+    width: 198px;
     height: 30px;
     border-radius: 0px 0px 10px 10px;
     align-items: center;
     flex-direction: row;
     padding: 3px 10px 3px 10px;
     border-top: 1px solid rgb(50, 50, 50);
+    border-bottom: 1px solid rgb(50, 50, 50);
+    margin-top: 170px;
+    position: absolute;
+}
+
+.shop-item-lower.inv-item {
+    height: 90px !important;
+    position: relative !important;
+    flex-direction: column;
+    gap: 7px;
+    padding: 5px 10px 5px 10px;
 }
 
 .shop-label {
-    width: 100px;
+    width: 110px;
     height: 20px;
     font-size: 12px;
     display: flex;
     align-items: center;
 }
-
+.shop-label.inv-label {
+    width: 154px;
+    height: 30px;
+}
 .shop-price {
     margin-left: auto;
     font-size: 15px;
     color: rgb(61, 143, 67);
     display: flex;
     align-items: center;
+}
+
+.inv-price {
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+    color: rgb(61, 143, 67);
 }
 
 .case-price {
@@ -126,13 +153,13 @@ button {
     box-shadow: 0px 3px 0px 0 rgb(50, 50, 50);
 }
 
-button:hover {
+button:hover:not(.hide) {
     transform: scale(1.01);
     background-color: rgb(31, 31, 38);
     border-color: rgb(100,100,100);
     box-shadow: 0px 3px 0px 0 rgb(100, 100, 100);
 }
-button:active {
+button:active:not(.hide) {
     box-shadow: 0px 0px 0px 0 rgb(40, 40, 40);
     margin-top: 0px;
 }
@@ -150,7 +177,30 @@ button:active {
     height: 100%;
     flex-direction: row;
     align-items: center;
+    gap: 10px;
 }
+
+.nav-btn {
+    width: 199px !important;
+    height: 60px !important;
+    margin-top: 0px;
+    border-width: 1px 0px 1px 0px;
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+.nav-btn.selected {
+    background-color: rgb(32, 32, 39);
+}
+
+.nav-btn:hover {
+    box-shadow: none !important;
+}
+
+.nav-btn:active {
+    background-color: rgb(35, 35, 40) !important;
+}
+
 
 #cash-container {
     width: 400px;
@@ -218,12 +268,6 @@ button:active {
     font-weight: 400;
 }
 
-#caseinfo-btns {
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-}
 
 
 .consumer {
@@ -258,13 +302,13 @@ button:active {
     width: 100%;
     height: 30px;
     border-radius: 0px 0px 10px 10px;
+    margin-top: auto;
     /* border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px; */
     
 }
 
 .wheel-item {
-    justify-content: flex-end;
     width: 200px;
     height: 200px;
     background-color: rgb(38, 37, 44);
@@ -364,7 +408,7 @@ button:active {
     border-radius: 5px;
 }
 
-#case-wheel {
+.case-wheel {
     
     position: relative;
     
@@ -374,7 +418,7 @@ button:active {
     gap: 20px;
 }
 
-#case-wheel-container {
+.case-wheel-container {
     width: 1000px;
     height: 250px;
     display: flex;
@@ -391,9 +435,11 @@ button:active {
 #case-wrapper {
     background-color: rgba(0, 0, 0, 0) !important;
     flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
-#wheel-arm {
+.wheel-arm {
     width: 2px;
     height: 300px;
     background-color: yellow;
@@ -407,23 +453,49 @@ button:active {
     mask-repeat: no-repeat;
 }
 
-.top-left {
-    position: absolute;
-    margin-left: calc(-50% - 20px);
-    margin-top: calc(-50% + 150px);
+#case-wheels {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-#case-back-btn.inactive {
-    display: none;
+#case-wrapper-lower {
+    height: 800px;
 }
 
-#case-back-btn:active {
+#case-btns.inactive {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.desc-btn {
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-margin {
+    margin: 0px !important;
+}
+/* #case-back-btn:active {
     margin-top: calc(-50% + 153px) !important;
+} */
+
+.back {
+    background-color: rgb(62, 27, 27);
+}
+.back:hover {
+    background-color: rgb(62, 17, 17) !important;
 }
 
 #inv-container {
     flex-direction: column;
     gap: 20px;
+}
+
+#inv-wrapper {
+    height: 853px;
 }
 
 
@@ -435,19 +507,588 @@ button:active {
     flex-wrap: wrap;
 }
 
-.inspect.hover {
-    height: 100px;
-    margin-top: -70px;  
-}
 .inspect {
     transition: .1s;
 }
 
 .sell-btn {
-    width: 154px;
+    width: 156px;
     height: 40px;
+    border-radius: 0px 0px 5px 5px;
 }
 
 .btn-wrap {
     height: 43px;
+}
+.inner-image {
+    width: 200px;
+    height: 200px;
+    margin-top: -10px;
+    transition: 0.1s;
+    background-size: contain;
+}
+
+.inv-inner {
+    width: 174px;
+    height: 174px;
+    padding: 20px;
+    margin-top: -5px;
+}
+
+.inner-image:hover:not(.no-hover) {
+    transform: scale(1.1);
+}
+
+.shop-item-lower.mini {
+    width: 174px;
+    height: 40px;
+    margin-top: 0px;
+}
+
+.shop-item-lower.inspect.hover {
+    height: 80px;
+    margin-top: -50px;  
+}
+
+.inner-image.no-hover {
+    position: absolute;
+}
+
+.wear {
+    position: absolute;
+    margin-left: 120px;
+    margin-top: 10px;
+    font-size: 20px;
+    width: 50px;
+    text-align: center;
+}
+
+.header-btns {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+
+.page-num {
+    padding: 0px 10px 0px 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.wheel-arm.hide {
+    opacity: 0 !important;
+}
+
+.prize-overlay {
+    display: none;
+}
+
+.icon {
+    max-width: 20px;
+    height: auto;
+    background: contain;
+}
+
+.icon.small {
+    max-width: 15px !important;
+}
+
+#deposit-field {
+    width: 320px;
+    height: 50px;
+    flex-direction: row;
+    align-items: center;
+}
+
+#betting-header {
+    width: calc(100% + 40px);
+    height: 90px;
+    margin-left: -20px;
+    margin-top: -20px;
+    padding: 20px 20px 20px 20px;
+    border-bottom: 1px solid rgb(50, 50, 50);
+    box-shadow: 0px 2px 10px 0 rgb(20,20,20);
+    z-index: 800;
+}
+
+#upgrades {
+    gap: 20px;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.upgrade-path {
+    width: 160px;
+    height: 645.5px;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.upgrade {
+    width: 120px;
+    height: 102px;
+    border-radius: 10px;
+    background-color: rgb(38, 37, 44);
+    box-shadow: 0px 3px 0px 0 rgb(50,50,50);
+    flex-direction: column;
+}
+
+.upgrade:hover {
+    border: 1px solid rgb(100,100,100);
+    box-shadow: 0px 3px 0px 0 rgb(100,100,100);
+}
+
+.upgrade:active {
+    border: 1px solid rgb(100,100,100);
+    box-shadow: 0px 0px 0px 0 rgb(100,100,100);
+    margin-top: 3px;
+}
+
+.upgrade-wrap {
+    height: 100%;
+    height: 105px;
+}
+
+.upgrade-arrow {
+    width: 100%;
+    height: 20px;
+}
+
+.upgrade.bought {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.upgrade-inner {
+    width: 100%;
+    height: 72px;
+    padding-top: 35px;
+    text-align: center;
+}
+.upgrade-lower {
+    width: 100%;
+    height: 30px;
+    border-radius: 0px 0px 10px 10px;
+    background-color: rgb(27, 27, 33);
+    border-top: 1px solid rgb(50, 50, 50);
+    padding: 5px 7px 7px 7px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.after-icon {
+    position: absolute;
+    margin-left: 170px;
+    margin-top: -3px;
+}
+.input-btn {
+    box-shadow: 0px 3px 0px 0 rgb(50, 50, 50);
+    border-radius: 0px 5px 5px 0px;
+}
+
+input {
+    width: 200px;
+    padding: 0px 40px 0px 10px;
+    height: 50px;
+    border-radius: 5px 0px 0px 5px;
+    box-shadow: 0px 3px 0px 0 rgb(50, 50, 50);
+    margin-top: -3px;
+}
+
+input.error {
+    border: 1px solid rgb(183, 33, 33);
+    box-shadow: 0px 3px 0px 0 rgb(183,33,33);
+}
+
+.bet-divider {
+    position: absolute;
+    z-index: 999;
+    width: 2px;
+    height: 30px;
+    background-color: rgb(50, 50, 50);
+}
+
+.bet-btn {
+    border-radius: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    width: 40px;
+    background-color: rgb(32, 32, 40);
+}
+
+.bet-btn:hover {
+    background-color: rgb(40,40,50) !important;
+}
+
+.bet-btn:active {
+    margin-top: 3px !important;
+}
+
+.bet-btn-extended {
+    border-radius: 0px 5px 5px 0px;
+    border-right: 1px solid rgb(50, 50, 50);
+    width: 80px;
+}
+
+.hidden {
+    display: none;
+}
+
+.coinside-btn {
+    background-color: rgb(40, 40, 50);
+    width: 175px;
+    height: 50px;
+}
+
+.coinside-btns {
+    gap: 10px;
+    height: 50px;
+    align-items: center;
+    flex-direction: row;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid rgb(100,100,100) !important;
+    box-shadow: 0px 3px 0px 0 rgb(100,100,100) !important;
+}
+
+.exit-btn {
+    width: 100px;
+    height: 50px;
+    border: 1px solid rgb(20,20,20);
+    box-shadow: 0px 3px 0px 0 rgb(20,20,20);
+    background-color: rgb(109, 25, 25);
+}
+.exit-btn:hover {
+    background-color: rgb(130, 50, 50) !important;
+}
+
+.hug-left {
+    margin-left: -30px;
+}
+
+.prize-overlay.show {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    display: block;
+}
+.wear.prize {
+    margin-left: 140px;
+}
+
+.prize-sell {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    margin-left: 150px;
+    margin-top: 150px;
+    border-radius: 30px;
+    border: 4px solid rgb(61, 143, 67);
+    color: rgb(61, 143, 67);
+    box-shadow: 0px 3px 0px 0 rgb(61, 143, 67);
+    z-index: 999;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.prize-sell:hover {
+    background-color: rgb(50, 50, 60) !important;
+    border: 4px solid rgb(61, 143, 67)!important;
+    box-shadow: 0px 3px 0px 0 rgb(61, 143, 67)!important;
+}
+
+.prize-sell:active {
+    margin-top: 153px !important;
+    box-shadow: 0px 0px 0px 0 rgba(0, 0, 0, 0) !important;
+}
+
+#case-btns {
+    width: 100%;
+    height: 70px;
+}
+
+.game-window {
+    width: 1200px;
+    margin: -20px 0px 0px -20px;
+    height: 700px;
+    flex-direction: row;
+}
+.coin-container {
+    width: 800px;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+#coin-img {
+    width: 300px;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.heads-coin, .tails-coin {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+    backface-visibility: hidden;
+}
+
+.flipToH, .flipToT {
+    transition: .5s ease-out;
+    transform-style: preserve-3d;
+}
+
+.flipToH {
+    transform: rotateY(720deg);
+}
+
+.flipToT {
+    transform: rotateY(540deg);
+}
+
+.heads-coin {
+    background-image: url(https://raw.githubusercontent.com/stocknt/csgo/main/icons/headsface.png);
+}
+.tails-coin {
+    background-image: url(https://raw.githubusercontent.com/stocknt/csgo/main/icons/tailsface.png);
+    transform: rotateY(180deg);
+}
+
+.history-bar {
+    width: 760px;
+    height: 130px;
+    border-radius: 10px;
+    background-color: rgb(38, 37, 44);
+    flex-direction: column;
+    margin-top: auto;
+}
+.history-label {
+    top: 10px;
+    left: 20px;
+    height: 30px;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 10px;
+    height: 40px;
+}
+
+#coin-history {
+    position: relative;
+    width: calc(100% - 40px);
+    height: 70px;
+    border-radius: 5px;
+    left: 20px;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.game-sidebar {
+    width: 400px;
+    height: calc(100% + 20px);
+    background-color: rgb(38, 37, 44);
+    flex-direction: column;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    gap: 20px;
+}
+
+.enter-bet {
+    width: 360px;
+    height: 80px;
+    gap: 10px;
+    margin-top: 40px;
+    flex-direction: column;
+}
+
+.event-btn {
+    background-color: rgb(27, 102, 27);
+}
+
+.event-btn:hover {
+    background-color: rgb(40, 130, 40) !important;
+}
+
+.win-popup {
+    width: 100px;
+    height: 80px;
+    background-color: rgb(50,50,50);
+    border: 8px solid rgb(0, 230, 15);
+    position: absolute;
+    border-radius: 20px;
+    top: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: .1s ease-out;
+    opacity: 0;
+}
+
+.win-popup.visible {
+    opacity: 1;
+    width: 150px;
+    height: 136px;
+}
+
+.win-mult {
+    width: 100%;
+    height: 30px;
+    
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.win-amount {
+    margin-top: 7px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.win {
+    color: rgb(0, 230, 15);
+    text-align: center;
+}
+
+.win-divider {
+    width: 80%;
+    height: 3px;
+    background-color: rgb(20,20,20);
+}
+
+.profit-field {
+    width: auto;
+    height: 20px;
+    color: rgb(61, 143, 67);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.profit {
+    width: calc(100% - 40px);
+    height: 40px;
+}
+
+.profit-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.dropdown {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    overflow-y: hidden;
+    transition: height 0.2s ease; /* smooth animation */
+    margin-top: 10px;
+    border-radius: 5px;
+    z-index: 900;
+}
+
+.dropdown:hover {
+    height: 291px;
+}
+
+.dropdown-wrap {
+    width: 200px;
+    height: 70px;
+}
+
+.dropdown-header {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+}
+
+#menu-img {
+    transition: .2s;
+    transform: rotate(180deg);
+}
+
+#earn-container {
+    width: 300px;
+    height: 300px;
+    flex-direction: column;
+    pointer-events: auto;
+}
+
+.earn-symbol {
+    font-size: 200px;
+    width: 300px;
+    text-align: center;
+}
+
+.fadeup {
+	position: absolute;
+	animation: fadeup 1s;
+	user-select: none;
+	z-index: 900;
+	color: white;
+	font-weight: bold;
+	opacity: 0;
+	pointer-events: none;
+}
+
+@keyframes fadeup {
+	0% {
+	  opacity: 1;
+	  margin-top: 0px;
+	}
+	90% {
+	  opacity: 0;
+	  margin-top: -100px;
+	}
+	100% {
+	  opacity: 0;
+	  margin-top: -100px;
+	}
+
+}
+.no-select {
+    user-select: none;
+}
+
+#stocknt {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px;
+    position: absolute;
+    margin-left: 450px;
+    gap: 10px;
+    background-color: rgb(20,20,25);
+    border-radius: 10px;
+    justify-content: center;
 }
