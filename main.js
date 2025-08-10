@@ -344,7 +344,7 @@ function openCase(c, n) {
                     prizes.push(prize);
                 }
                 let img = document.createElement("img");
-                img.src = `https://raw.githubusercontent.com/stocknt/csgo/main/images/${item.name.replace(' ', '').replace(' ', '').replace(' ', '').replace('|', '').replace('-', '')}.png`
+                img.src = `https://raw.githubusercontent.com/stocknt/csgo/main/images/${item.name.replace(' ', '').replace(' ', '').replace(' ', '').replace('|', '').replace('-', '').replace('-', '')}.png`
                 img.className = "inner-image no-hover";
                 div.appendChild(img);
                 let fade = document.createElement("div");
