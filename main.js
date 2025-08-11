@@ -60,7 +60,6 @@ function rendShop() {
             rendCaseInfo(data);
         });
 
-        console.log(data.price, user.cash);
         if(user.cash < data.price.toFixed(2)) {
             div.classList.add("hide");
         }
@@ -109,7 +108,6 @@ function rendInv() {
     let page = Number(get("page-num").innerHTML);
     let last = page*18;
     if(user.inv.length < last) {last = user.inv.length}
-    console.log(page, user.inv.length);
     if(page == 1) {get("prev-btn").classList.toggle("hide", true)} 
     else {get("prev-btn").classList.toggle("hide", false)}
     if(user.inv.length == last) {get("next-btn").classList.toggle("hide", true)}
@@ -278,7 +276,6 @@ function openCase(c, n) {
                 
                 items.push(item);
                 let div = document.createElement("div");
-                console.log(item);
                 div.className = "non35 container wheel-item " + item.rarity;
                 if(i == 35) {
                     div.id = "skin35";
@@ -330,7 +327,6 @@ function openCase(c, n) {
 
                         let value = Number((prize.price * wdb[prize.wear]));
                         user.cash += Number(value * (user.bonus.num/100 + 1));
-                        console.log((value * (user.bonus.num/100 + 1)));
                         
                         rendCash();
                     })
@@ -399,10 +395,14 @@ function openCase(c, n) {
                     rendCash();
                 }
                 get("case-btns").classList.toggle("inactive", false);
+                get("reopen-value").innerHTML = "$" + (getCase(c).price * n).toFixed(2);
+                get("reopen-btn").onclick = function() {
+                    get("case-btns").classList.toggle("inactive", true);
+                    openCase(c, n);
+                }
             }, 4000);
         }
         let sum = 0;
-        console.log("sell-all");
         prizes.map(a => sum += a.price * wdb[a.wear]);
         sum *= user.bonus.num/100 + 1;
         get("sellall-value").innerHTML = "$" + sum.toFixed(2);
@@ -696,11 +696,8 @@ function checkInvalidDeposit() {
 
 function checkInvalidBet() {
     let bet = get("bet-field");
-    console.log(bet.value);
+
     if(Number(bet.value).toFixed(2) > Number(user.wallet.toFixed(2)) || Number(bet.value) <= 0) {
-        console.log(Number(bet.value).toFixed(2) > user.wallet.toFixed(2));
-        console.log(bet.value <= 0);
-        console.log(user.wallet, user.wallet.toFixed(2));
         bet.classList.toggle("error", true);
         return true;
     } else {
@@ -884,14 +881,12 @@ function rendUpgrades() {
 
             div.addEventListener("click", function() {
                 if(buy(data.price)) {
-                    console.log(data.type, user[data.type]);
                     user[data.type].num += data.add;
                     user[data.type].count ++;
                     rendUpgrades();
                     rendCash();
                 }
             })
-            console.log("path" + path);
             div.appendChild(inner);
             div.appendChild(lower);
             div.appendChild(price);
@@ -902,7 +897,6 @@ function rendUpgrades() {
             arrow.src = "https://raw.githubusercontent.com/stocknt/csgo/main/icons/down.png";
 
             get("path" + path).appendChild(wrap);
-            console.log(updb[path], updb[path].length, Number(upg)+1);
             if(updb[path].length != Number(upg)+1) {
                 get("path" + path).appendChild(arrow);
             }
